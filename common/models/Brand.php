@@ -56,7 +56,7 @@ class Brand extends \yii\db\ActiveRecord
 
     public static function getBrandList()
     {
-        $res = parent::find()->orderby(['id' => 'asc'])->asArray()->all();
+        $res = parent::find()->select(['id', 'name', 'initial', 'logo'])->orderby(['id' => 'asc'])->asArray()->all();
 
         return $res;
     }

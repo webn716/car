@@ -53,4 +53,16 @@ class BrandChild extends \yii\db\ActiveRecord
             'list' => 'Carlist',
         ];
     }
+
+    public static function getInfo($parentid)
+    {
+        $res = parent::find()->where(['parentid' => $parentid])->orderby(['id' => 'asc'])->asArray()->all();
+
+        foreach($res as $k => &$info)
+        {
+            $info[$k]['list'] = json_decode($info['list'], true);
+        }
+
+        return $res;
+    }
 }
