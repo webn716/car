@@ -12,9 +12,14 @@ use yii\db\ActiveRecord;
  * @property integer $uid
  * @property string $plate_number
  * @property string $brand
+ * @property string $color
+ * @property integer $type
  * @property string $licheng
  * @property string $chejian_date
+ * @property string $chejian_cycle
  * @property string $chexian_date
+ * @property string $chexian_cycle
+ * @property string $reg_year
  * @property string $ctime
  */
 class Car extends ActiveRecord
@@ -33,8 +38,8 @@ class Car extends ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'plate_number', 'brand', 'licheng', 'chejian_date', 'chexian_date', 'ctime'], 'required'],
-            [['uid'], 'integer'],
+            [['uid', 'plate_number', 'brand', 'color', 'type', 'licheng', 'chejian_date', 'chejian_cycle', 'chexian_date', 'chexian_cycle', 'reg_year', 'ctime'], 'required'],
+            [['uid', 'type'], 'integer'],
             [['chejian_date', 'chexian_date', 'ctime'], 'safe'],
             [['plate_number', 'brand', 'licheng'], 'string', 'max' => 255],
         ];
@@ -50,10 +55,15 @@ class Car extends ActiveRecord
             'uid' => '用户ID',
             'plate_number' => '车牌号',
             'brand' => '品牌',
+            'color' => '颜色',
+            'type' => '燃料形式',
             'licheng' => '里程数',
-            'chejian_date' => '年检时间',
-            'chexian_date' => '车险时间',
-            'ctime' => '创建时间',
+            'chejian_date' => '验车时间',
+            'chejian_cycle' => '验车周期',
+            'chexian_date' => '保险时间',
+            'chexian_cycle' => '保险周期',
+            'reg_year' => '首次上牌时间',
+            'ctime' => '创建时间'
         ];
     }
 }

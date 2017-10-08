@@ -19,7 +19,7 @@ class BaseController extends ActiveController
      */
     public function behaviors()
     {
-        return [];
+        // return [];
         $behaviors = parent::behaviors();  
         #定义返回格式是：JSON  
         $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;  

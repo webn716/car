@@ -11,7 +11,7 @@ class CarController extends BaseController
 {
     public function actionIndex()
     {
-        $uid = Yii::$app->user->identity->id;
+        $uid = Yii::$app->user->id;
 
         return ['uid' => $uid];
     }
@@ -57,20 +57,27 @@ class CarController extends BaseController
 
     public function actionAdd()
     {
-        echo '<pre>';print_r(Yii::$app->request->post());exit;
+        $data = yii::$app->request->post();
+        $data['ctime'] = date('Y-M-D H:i:s');
+        // $uid = yii::$app->user->id;
+        $uid = $data['uid'];
+        if(!$uid)
+        {
+            return ['err' => 111, 'msg' => '请先登录'];
+            exit;
+        }
 
         $model = new Car();
 
-        if ($model->load(yii::$app->request->post())) {
-            if ($model->validate()) {
+        
+        if ($model->load($data, '')) {
+            if ($model->validate() && $model->save()) {
                 // form inputs are valid, do something here
-                return;
+                return ['err' => '0', 'msg' => '添加成功'];
             }
         }
 
-        return $this->render('add', [
-            'model' => $model,
-        ]);
+        return ['err' => 801, 'msg' => '无效操作'];
 
     }
 
