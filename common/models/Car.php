@@ -66,4 +66,9 @@ class Car extends ActiveRecord
             'ctime' => '创建时间'
         ];
     }
+
+    public static function getCarList($uid, $limit = 5, $by = 'DESC')
+    {
+        return parent::find()->where(['uid' => $uid])->limit($limit)->orderby(['id' => $by])->all();
+    }
 }
