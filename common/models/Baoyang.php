@@ -56,8 +56,19 @@ class Baoyang extends \yii\db\ActiveRecord
         ];
     }
 
+    //关联表
+    public function getType()
+    {
+        return $this->hasOne(BaoyangType::className(),['id'=>'type']);
+    }
+
     public static function getBaoyangList($uid)
     {
-        return parent::find()->where(['uid' => $uid])->all();
+        $list = parent::find()->where(['uid' => $uid])->all();
+
+        if(empty($list))
+        {
+            $type_list = BaoyangType::find()->orderby(['sort' => 'asc'])->all();
+        }
     }
 }
