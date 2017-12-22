@@ -16,7 +16,9 @@ class BaoyangController extends BaseController
     {
         $uid = yii::$app->user->id;
 
-        
+
+
+        return ["data" => 'aaaaa', "uid": $uid];
     
     }
 
