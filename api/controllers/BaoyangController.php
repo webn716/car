@@ -3,6 +3,7 @@
 namespace api\controllers;
 
 use Yii;
+use common\models\Baoyang;
 
 
 class BaoyangController extends BaseController
@@ -16,10 +17,9 @@ class BaoyangController extends BaseController
     {
         $uid = yii::$app->user->id;
 
+        $res = Baoyang::getBaoyangList($uid);
 
-
-        return ["data" => 'aaaaa', "uid": $uid];
-    
+        return ["data" => 'aaaaa', "uid" => $uid];
     }
 
 }
