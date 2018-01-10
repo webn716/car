@@ -16,3 +16,5 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 (new yii\web\Application($config))->run();
+
+Yii::$classMap['yii\helpers\ArrayHelper'] = 'common/components/ArrayHelper.php';
