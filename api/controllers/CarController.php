@@ -57,8 +57,7 @@ class CarController extends BaseController
     public function actionList()
     {
         //todo
-        // $uid = yii::$app->user->id;
-        $uid = 6;
+        $uid = yii::$app->user->id;
         $data = Car::getCarList($uid);
         
         return $data;
@@ -70,8 +69,7 @@ class CarController extends BaseController
         $data = yii::$app->request->post();
         $data['ctime'] = date('Y-M-D H:i:s');
         //todo
-        // $uid = yii::$app->user->id;
-        $uid = 6;
+        $uid = yii::$app->user->id;
         if(!$uid)
         {
             return ['err' => 111, 'msg' => '请先登录'];
